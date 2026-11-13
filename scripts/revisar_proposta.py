@@ -40,15 +40,9 @@ if hero:
  hero["class"]=list(dict.fromkeys(hero.get("class",[])+["hero-revised"]))
  brand=hero.select_one("img.brand")
  if brand:brand["alt"]="Identidade visual de O Novo Jardins Imóveis"
- if not soup.select_one(".jardins-desktop-preview"):
-  preview=soup.new_tag("div");preview["class"]="jardins-desktop-preview"
-  img=soup.new_tag("img",src="o-novo-jardins.gif",alt="Prévia de apresentação visual de imóvel");img["loading"]="lazy";preview.append(img)
-  nxt=hero.find_next_sibling()
-  if nxt and nxt.name!="main" and nxt.find(["video","iframe","img"]):nxt.append(preview)
-  else:hero.insert_after(preview)
 for old in soup.select("style[data-jardins-final-review]"):old.decompose()
 css="""
-.hero h1{font-size:clamp(2.7rem,5vw,4.8rem);line-height:1.04;letter-spacing:-.025em}
+.hero h1{font-size:clamp(2rem,3.6vw,3.35rem);line-height:1.1;letter-spacing:-.018em}
 .h2{font-size:clamp(2rem,3.4vw,3.1rem);line-height:1.13;letter-spacing:-.018em}
 .lead{font-size:clamp(1rem,1.35vw,1.11rem);line-height:1.66}
 .intro{margin-bottom:32px}
@@ -64,10 +58,9 @@ css="""
 .closing{padding:66px 24px 70px}
 .closing h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(1.65rem,3vw,2.65rem);font-weight:400;line-height:1.22;letter-spacing:-.018em;max-width:740px;margin:0 auto 18px}
 .closing>p:not(.note){font-size:1rem;line-height:1.65}
-.jardins-desktop-preview{display:none}
+.jardins-desktop-preview{display:none!important}
 @media(min-width:701px){
- .hero.hero-revised{position:relative;min-height:72vh;background:#0b1b12!important;overflow:hidden;padding:42px 0 55px}
- .hero.hero-revised::before,.hero.hero-revised::after{background-image:none!important}
+ .hero.hero-revised{position:relative;min-height:72vh;background:linear-gradient(90deg,rgba(6,19,12,.84),rgba(8,25,16,.62)),url('/o-novo-jardins.gif') center center / cover no-repeat!important;overflow:hidden;padding:42px 0 55px}
  .hero.hero-revised>div:first-child{width:auto;max-width:210px;position:absolute;top:20px;left:max(5vw,28px);z-index:2}
  .hero.hero-revised img.brand{height:auto!important;width:100%;max-width:210px;aspect-ratio:auto;object-fit:contain;object-position:center;border-radius:3px}
  .hero.hero-revised .hero-copy{margin:auto 0;padding-top:110px;padding-bottom:42px}
@@ -76,9 +69,9 @@ css="""
  .jardins-desktop-preview img{display:block;width:min(100%,540px);max-height:290px;object-fit:contain;background:#10251a;border:1px solid #c4aa7860;box-shadow:0 14px 42px #09160c22;border-radius:12px}
 }
 @media(max-width:700px){
- .hero.hero-revised{background:#0b1b12}
+ .hero.hero-revised{background:linear-gradient(90deg,rgba(6,19,12,.80),rgba(8,25,16,.52)),url('/o-novo-jardins.gif') center center / cover no-repeat}
  .hero.hero-revised .brand{width:100%;height:auto;max-width:none;aspect-ratio:16/9;object-fit:cover}
- .hero h1{font-size:clamp(2.1rem,9.6vw,2.75rem);line-height:1.04}
+ .hero h1{font-size:clamp(1.85rem,7.5vw,2.35rem);line-height:1.1}
  .h2{font-size:clamp(1.8rem,7vw,2.1rem);line-height:1.14}
  .lead{font-size:1rem;line-height:1.58}
  .growth-block{margin:26px 0 0;padding:26px 0 12px}
