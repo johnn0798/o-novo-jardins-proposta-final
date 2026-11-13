@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1b12">
+<title>O Novo Jardins | Apresentação personalizada</title>
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0b1b12}
+#proposal{width:100%;height:100%;height:100dvh;display:block;border:0;opacity:0;transition:opacity .2s ease}
+#loading{position:fixed;inset:0;display:grid;place-items:center;color:#c4aa78;font:400 18px Georgia,serif;background:#0b1b12}
+</style>
+</head>
+<body>
+<div id="loading">O Novo Jardins</div>
+<iframe id="proposal" src="/index.html" title="Proposta O Novo Jardins" loading="eager"></iframe>
+<script>
+(function(){
+const frame=document.getElementById('proposal');
+frame.addEventListener('load',function(){
+ try{
+ const doc=frame.contentDocument;
+ const intro=doc.querySelector('main section.wrap > .intro');
+ if(intro){
+  const lead=intro.querySelector('p.lead');
+  if(lead) lead.textContent='Vocês já exploram vídeos dinâmicos. A proposta é ampliar esse repertório com formatos que chamam atenção nas redes sociais, trazendo mais visibilidade para o perfil e para os imóveis. Tudo a partir das fotos que vocês já têm.';
+  const cols=intro.nextElementSibling;
+  if(cols&&cols.classList.contains('columns')) cols.remove();
+ }
+ const growth=doc.querySelector('.growth-block');
+ if(growth){
+  const h=growth.querySelector('h2.h2');if(h)h.textContent='O próximo conteúdo está no catálogo de vocês.';
+  const lead=growth.querySelector('p.lead');if(lead)lead.textContent='O portfólio da O Novo Jardins já reúne imóveis com grande potencial visual. Mas transformar esse catálogo em vídeos por meio de produções presenciais exige logística, contratação, captação e edição. Fazer isso em volume pode exigir um orçamento muito alto — e limitar a frequência de novas publicações.';
+  const cost=growth.querySelector('.production-note');
+  if(cost){const strong=cost.querySelector('strong');if(strong)strong.remove();const p=cost.querySelector('p');if(p)p.textContent='Uma produção presencial pode facilmente chegar a R$ 5 mil, considerando captação, deslocamentos, equipe e edição. Para divulgar vários imóveis, esse investimento se multiplica.';}
+  const k=growth.querySelector('.inventory .kicker');if(k)k.textContent='Vocês já têm a matéria-prima.';
+  const close=growth.querySelector('.growth-close');if(close)close.textContent='O acervo já existe. Agora, existe também uma forma de desbloquear esse potencial e transformar essas propriedades em conteúdo com escala e investimento acessível.';
+ }
+ const campaign=doc.querySelector('.steps .step:last-child p');
+ if(campaign)campaign.textContent='Vou disponibilizar também um gestor de tráfego especialista em vendas para colocar a campanha no ar no Meta Ads (Facebook e Instagram) e acompanhar seu desempenho durante sete dias. O serviço de gestão é por nossa conta no pacote completo.';
+ const feat=doc.querySelector('.price.feature');
+ if(feat){
+  for(const li of feat.querySelectorAll('li'))if(li.textContent.includes('Campanha de 7 dias'))li.textContent='Campanha de 7 dias no Meta Ads (Facebook e Instagram): gestor de tráfego especialista em vendas e acompanhamento incluídos como bônus';
+  const amt=feat.querySelector('.amount');
+  if(amt&&!feat.querySelector('.installments'))amt.insertAdjacentHTML('afterend','<p class="installments">Ou em até 5x no cartão, com acréscimo das taxas da maquineta.</p>');
+ }
+ const hero=doc.querySelector('header.hero');
+ if(hero&&!doc.querySelector('.jardins-desktop-preview')){
+  hero.insertAdjacentHTML('afterend','<div class="jardins-desktop-preview"><img src="o-novo-jardins.gif" alt="Prévia de apresentação visual dos imóveis" loading="lazy"></div>');
+ }
+ const style=doc.createElement('style');style.textContent=`
+.hero h1{font-size:clamp(2.65rem,5vw,4.8rem);line-height:1.04;letter-spacing:-.025em}
+.h2{font-size:clamp(1.95rem,3.4vw,3.1rem);line-height:1.13;letter-spacing:-.018em}
+.lead{font-size:clamp(1rem,1.35vw,1.11rem);line-height:1.63}
+.intro{margin-bottom:30px}
+.growth-block{margin-top:30px;margin-bottom:0;padding-top:28px;padding-bottom:15px;border-bottom:0}
+.growth-block .h2{margin-bottom:12px}
+.production-note{margin:20px 0 24px;padding:21px 27px}
+.production-note p{font-size:1rem;line-height:1.62}
+.inventory{margin-top:22px}
+.growth-close{margin:20px 0 0;font-size:clamp(1.13rem,1.65vw,1.3rem);line-height:1.48}
+.visual-examples{padding-top:14px}
+.visual-examples .intro{margin-bottom:26px}
+.installments{margin:7px 0 0;color:#e0ca9d;font-size:.93rem;line-height:1.5}
+.closing{padding:68px 24px}
+.closing h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(1.65rem,3vw,2.65rem);font-weight:400;line-height:1.23;letter-spacing:-.018em;max-width:760px;margin:0 auto 18px}
+.closing>p:not(.note){font-size:1rem;line-height:1.65}
+.jardins-desktop-preview{display:none}
+@media(min-width:701px){
+.hero{position:relative;min-height:72vh;background:#0b1b12!important;overflow:hidden;padding:46px 0 50px}
+.hero>div:first-child{width:205px;position:absolute;top:20px;left:max(5vw,28px);z-index:3}
+.hero img.brand{height:auto!important;width:100%;max-width:205px;aspect-ratio:auto;object-fit:contain;object-position:center}
+.hero .hero-copy{margin:auto 0;padding-top:110px;padding-bottom:38px}
+.hero h1{max-width:800px}
+.jardins-desktop-preview{display:flex;justify-content:center;align-items:center;max-width:1000px;margin:26px auto 32px;padding:0 24px}
+.jardins-desktop-preview img{display:block;width:min(100%,540px);max-height:290px;object-fit:contain;background:#10251a;border:1px solid #c4aa7860;box-shadow:0 14px 40px #09160c22;border-radius:12px}
+}
+@media(max-width:700px){
+.hero h1{font-size:clamp(2.1rem,9.6vw,2.75rem);line-height:1.04}
+.h2{font-size:clamp(1.8rem,7vw,2.1rem);line-height:1.14}
+.lead{font-size:1rem;line-height:1.58}
+.growth-block{margin:26px 0 0;padding:26px 0 12px}
+.visual-examples{padding-top:18px}
+.production-note{padding:20px}
+.growth-close{font-size:1.15rem;margin-top:20px}
+.closing{padding:52px 25px 56px}
+.closing h2{font-size:clamp(1.65rem,7.2vw,2rem);line-height:1.2}
+.installments{font-size:.89rem}
+}
+`;
+ doc.head.appendChild(style);
+ }catch(e){console.error('Erro na revisão da proposta',e);}
+ frame.style.opacity='1'; document.getElementById('loading').remove();
+});
+})();
+</script>
+</body>
+</html>
